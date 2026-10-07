@@ -92,6 +92,15 @@ export async function getDb(): Promise<Database> {
   const url = process.env.DATABASE_URL;
 
   if (!url) {
+    // Vercel's filesystem is read-only, so the embedded database can never
+    // live there — fail with instructions instead of a cryptic ENOENT from
+    // mkdir, even if ALLOW_EMBEDDED_DB was copied into the project env.
+    if (process.env.VERCEL) {
+      throw new Error(
+        "DATABASE_URL is not set on Vercel. Add the Neon pooled connection string in " +
+          "Project Settings → Environment Variables, remove ALLOW_EMBEDDED_DB, and redeploy.",
+      );
+    }
     // Production on Vercel always has DATABASE_URL; ALLOW_EMBEDDED_DB lets a
     // local production build (`next build`) run against the embedded database.
     if (isProduction() && process.env.ALLOW_EMBEDDED_DB !== "true") {
