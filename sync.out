@@ -1,0 +1,17 @@
+
+> gentry@0.1.0 sync:osm
+> tsx scripts/sync-osm.ts --force
+
+[db] using embedded PGlite database at C:\Dev\Gentry\.data\gentry (set DATABASE_URL to use Neon)
+Only 0 shops found on the map. OSM coverage around Ojere is thin — add the rest manually in the admin.
+{
+  "ranAt": "2026-10-05T11:26:31.718Z",
+  "found": 0,
+  "created": 0,
+  "updated": 0,
+  "unchanged": 0,
+  "hidden": 0,
+  "skippedOutsideArea": 0,
+  "skippedCooldown": false,
+  "durationMs": 17565
+}

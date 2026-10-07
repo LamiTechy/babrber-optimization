@@ -1,0 +1,111 @@
+{
+  "resolvedAt": "2026-10-07T09:32:44.716Z",
+  "trem": {
+    "lat": 7.1090304,
+    "lng": 3.334763,
+    "url": "https://www.google.com/maps/place/TREM+OJERE/@7.1090304,3.334763,17z/data=!3m1!4b1!4m6!3m5!1s0x103a4d82e68704b9:0xa3c9de7f344411c0!8m2!3d7.1090304!4d3.334763!16s%2Fg%2F11gxh5y97j?entry=ttu&g_ep=EgoyMDI2MTAwNC4wIKXMDSoASAFQAw%3D%3D"
+  },
+  "mapoly": {
+    "lat": 7.1010567,
+    "lng": 3.3296175,
+    "url": "https://www.google.com/maps/place/Moshood+Abiola+Polytechnic/@7.1010567,3.3296175,17z/data=!3m1!4b1!4m6!3m5!1s0x103a4cec798b9285:0x24c1a34aaf8a0814!8m2!3d7.1010567!4d3.3296175!16s%2Fm%2F0bbwbl2?entry=ttu&g_ep=EgoyMDI2MTAwNC4wIKXMDSoASAFQAw%3D%3D"
+  },
+  "shops": [
+    {
+      "name": "Unique Haircut",
+      "cid": "15148517344584837469",
+      "lat": 7.1143,
+      "lng": 3.3377317
+    },
+    {
+      "name": "D'bright Barbers",
+      "cid": "15668436956532593222",
+      "lat": 7.1157646,
+      "lng": 3.3324381
+    },
+    {
+      "name": "Barberyemmy Salon (Kaybee)",
+      "cid": "10728223962862763627",
+      "lat": 7.1190322,
+      "lng": 3.329484
+    },
+    {
+      "name": "HZN Classic Cut",
+      "cid": "325625665118911580",
+      "lat": 7.1185175,
+      "lng": 3.3263813
+    },
+    {
+      "name": "Awesome Ace Trim and Fades",
+      "cid": "14434298582764846953",
+      "lat": 7.1193042,
+      "lng": 3.3425783
+    },
+    {
+      "name": "Silent Cut Unisex Salon",
+      "cid": "9465296130224243956",
+      "lat": 7.1195787,
+      "lng": 3.3426507
+    },
+    {
+      "name": "Sunshine Barbing Saloon",
+      "cid": "6847326680823113750",
+      "lat": 7.1182605,
+      "lng": 3.321187
+    },
+    {
+      "name": "Interactive Barbers Shop",
+      "cid": "16449864130638374329",
+      "lat": 7.1263123,
+      "lng": 3.3340233
+    },
+    {
+      "name": "OllySmiles Enterprises",
+      "cid": "14150246523557376902",
+      "lat": 7.1263749,
+      "lng": 3.3334201
+    },
+    {
+      "name": "Hair by Moore Unisex Salon",
+      "cid": "1832538726773831782",
+      "lat": 7.1243189,
+      "lng": 3.3234101
+    },
+    {
+      "name": "Sirdamx Unisex Barbershop",
+      "cid": "6098458873281419031",
+      "lat": 7.1210202,
+      "lng": 3.3187338
+    },
+    {
+      "name": "Abdul Barbers Shop",
+      "cid": "2637721050680587986",
+      "lat": 7.1299013,
+      "lng": 3.3363437
+    },
+    {
+      "name": "Kapick Exclusive Cutz",
+      "cid": "14267624017490318189",
+      "lat": 7.1300618,
+      "lng": 3.3316391
+    },
+    {
+      "name": "Olax Barbing Saloon",
+      "cid": "5386614939214637151",
+      "lat": 7.1305653,
+      "lng": 3.3361758
+    },
+    {
+      "name": "Drey Swizzy Barbing Salon",
+      "cid": "10081896723764030930",
+      "lat": 7.1312847,
+      "lng": 3.3313207
+    },
+    {
+      "name": "Manspace Barbershop & Café",
+      "cid": "13507101722559734257",
+      "lat": 7.1359123,
+      "lng": 3.3323642
+    }
+  ]
+}

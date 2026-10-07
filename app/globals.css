@@ -1,0 +1,265 @@
+@import "tailwindcss";
+
+/* Class-based dark mode: the toggle on <html> wins over the OS preference. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #faf7f2;
+  --surface: #ffffff;
+  --surface-2: #f3ede3;
+  --fg: #1c1917;
+  --fg-muted: #6b635a;
+  --border: #e6ded1;
+  --gold: #8a6a1f;
+  --gold-strong: #a8863a;
+  --gold-soft: #f6edd8;
+  --focus: #8a6a1f;
+}
+
+.dark {
+  --bg: #12100e;
+  --surface: #1c1917;
+  --surface-2: #26221e;
+  --fg: #f5f1ea;
+  --fg-muted: #a8a29e;
+  --border: #35302a;
+  --gold: #e0bd6a;
+  --gold-strong: #c8a24a;
+  --gold-soft: #2e2718;
+  --focus: #e0bd6a;
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-foreground: var(--fg);
+  --color-muted: var(--fg-muted);
+  --color-border: var(--border);
+  --color-gold: var(--gold);
+  --color-gold-strong: var(--gold-strong);
+  --color-gold-soft: var(--gold-soft);
+
+  --color-charcoal-950: #12100e;
+  --color-charcoal-900: #1c1917;
+  --color-charcoal-800: #292524;
+  --color-charcoal-700: #44403c;
+  --color-gold-300: #ecd6a0;
+  --color-gold-400: #e0bd6a;
+  --color-gold-500: #c8a24a;
+  --color-gold-600: #a8863a;
+  --color-gold-700: #8a6a1f;
+
+  --color-open: #15803d;
+  --color-open-soft: #dcfce7;
+  --color-soon: #b45309;
+  --color-soon-soft: #fef3c7;
+  --color-closed: #b91c1c;
+  --color-closed-soft: #fee2e2;
+  --color-neutral-soft: #e7e5e4;
+
+  --font-display: var(--font-display-family);
+  --font-body: var(--font-body-family);
+}
+
+@theme {
+  --breakpoint-xs: 24rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body-family), ui-sans-serif, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Status badges never rely on colour alone — the label always carries text. */
+@layer components {
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold;
+  }
+
+  .badge-open {
+    background: var(--color-open-soft);
+    color: var(--color-open);
+  }
+
+  .badge-soon {
+    background: var(--color-soon-soft);
+    color: var(--color-soon);
+  }
+
+  .badge-closed {
+    background: var(--color-closed-soft);
+    color: var(--color-closed);
+  }
+
+  .badge-unknown {
+    background: var(--color-neutral-soft);
+    color: #44403c;
+  }
+
+  .dark .badge-open {
+    background: #14361f;
+    color: #86efac;
+  }
+
+  .dark .badge-soon {
+    background: #3b2a10;
+    color: #fcd34d;
+  }
+
+  .dark .badge-closed {
+    background: #3d1717;
+    color: #fca5a5;
+  }
+
+  .dark .badge-unknown {
+    background: #2a2724;
+    color: #d6d3d1;
+  }
+
+  .card {
+    @apply rounded-2xl border border-border bg-surface shadow-sm;
+  }
+
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-4 text-sm font-semibold transition-colors;
+  }
+
+  .btn-primary {
+    background: var(--color-charcoal-900);
+    color: #faf7f2;
+  }
+
+  .btn-primary:hover {
+    background: var(--color-charcoal-800);
+  }
+
+  .dark .btn-primary {
+    background: var(--gold-500, #c8a24a);
+    color: #1c1917;
+  }
+
+  .btn-secondary {
+    background: var(--gold-soft);
+    color: var(--gold);
+    border: 1px solid var(--border);
+  }
+
+  .btn-secondary:hover {
+    filter: brightness(0.98);
+  }
+
+  .btn-ghost {
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--fg);
+  }
+
+  .btn-ghost:hover {
+    background: var(--surface-2);
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-border bg-surface px-3.5 py-3 text-base text-foreground placeholder:text-muted;
+  }
+}
+
+/* Leaflet is styled by hand so the map follows the light/dark theme. */
+.leaflet-container {
+  background: var(--surface-2);
+  font-family: var(--font-body-family), ui-sans-serif, system-ui, sans-serif;
+  font-size: 13px;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--surface);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.18);
+}
+
+.leaflet-popup-content {
+  margin: 8px 10px;
+}
+
+.leaflet-bar,
+.leaflet-bar a {
+  background: var(--surface);
+  color: var(--fg);
+  border-color: var(--border);
+}
+
+.leaflet-bar a:hover {
+  background: var(--surface-2);
+}
+
+.map-pin-wrap {
+  background: transparent;
+  border: 0;
+}
+
+.map-pin {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--surface);
+  border-radius: 9999px;
+  background: var(--fg-muted);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.4);
+}
+
+.map-pin-open {
+  background: var(--color-open);
+}
+
+.map-pin-soon {
+  background: var(--color-soon);
+}
+
+.map-pin-closed {
+  background: var(--color-closed);
+}
+
+.map-pin-unknown {
+  background: var(--fg-muted);
+}
+
+.map-pin-you {
+  width: 18px;
+  height: 18px;
+  background: #2563eb;
+}
+
+.map-pin-selected {
+  transform: scale(1.3);
+  outline: 3px solid var(--gold-500, #c8a24a);
+  outline-offset: 1px;
+}
