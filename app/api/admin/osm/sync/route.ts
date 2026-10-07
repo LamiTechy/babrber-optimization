@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 
 const bodySchema = z.object({ force: z.boolean().default(false) });
 
-/** Manual sync from the admin dashboard (the hourly cron uses /api/cron/sync). */
+/** Manual sync from the admin dashboard (the daily cron uses /api/cron/sync). */
 export async function POST(request: NextRequest) {
   const guard = await requireAdmin();
   if (guard.response) return guard.response;

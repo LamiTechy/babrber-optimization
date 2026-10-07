@@ -6,7 +6,7 @@ import { OverpassUnavailableError } from "@/lib/osm/overpass";
 
 export const dynamic = "force-dynamic";
 
-/** Vercel Cron (see vercel.json) calls this hourly with `Authorization: Bearer <CRON_SECRET>`. */
+/** Vercel Cron (see vercel.json) calls this daily with `Authorization: Bearer <CRON_SECRET>`. */
 async function authorized(request: NextRequest): Promise<boolean> {
   const secret = cronSecret();
   if (!secret) return false;

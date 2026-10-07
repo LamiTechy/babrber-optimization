@@ -59,11 +59,11 @@ npm run sync:osm         # import barbershops from OpenStreetMap (tsx scripts/sy
 
 **Admin** — `/admin` (login + dashboard). Session is a JWT cookie guarded by `proxy.ts` (Next 16's middleware). Shops can be edited by section (details / hours / services / photos), soft-deleted, and verified. Photo uploads go to Vercel Blob.
 
-**OSM sync** — `POST /api/admin/osm/sync` (admin) and `GET /api/cron/sync` (hourly Vercel Cron, `vercel.json`). `lib/osm/importShops.ts` upserts mapped shops, hides ones that disappear, never overwrites manually edited shops, and records each run in `sync_runs` (one-hour cooldown). `lib/osm/overpass.ts` retries with backoff and falls back to a mirror; outages surface as `502 upstream_unavailable`.
+**OSM sync** — `POST /api/admin/osm/sync` (admin) and `GET /api/cron/sync` (daily Vercel Cron at 03:00 UTC, `vercel.json` — Hobby plans only allow once-daily crons). `lib/osm/importShops.ts` upserts mapped shops, hides ones that disappear, never overwrites manually edited shops, and records each run in `sync_runs` (one-hour cooldown). `lib/osm/overpass.ts` retries with backoff and falls back to a mirror; outages surface as `502 upstream_unavailable`.
 
 ## Deploy
 
 1. Create a Neon database and a Vercel Blob store.
 2. Set the environment variables above (use the **pooled** Neon URL; set `SHOW_SAMPLES=false`).
 3. `npm run db:migrate && npm run db:seed` once, or run them from a release step.
-4. `vercel deploy` — the hourly OSM sync cron comes from `vercel.json` and authenticates with `CRON_SECRET`.
+4. `vercel deploy` — the daily OSM sync cron comes from `vercel.json` (03:00 UTC) and authenticates with `CRON_SECRET`.
