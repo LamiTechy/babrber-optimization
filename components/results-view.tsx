@@ -194,6 +194,7 @@ export function ResultsView({ location, filters, result, landmarks }: Props) {
             zoom={15}
             fit
             youLabel={location.label}
+            connectToYou
           />
         ) : result.shops.length === 0 ? (
           <EmptyState hasFilters={hasFilters} onReset={() => applyFilters({ service: null, maxKm: null, openNow: false })} landmarks={landmarks} />

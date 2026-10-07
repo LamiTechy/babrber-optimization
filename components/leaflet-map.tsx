@@ -4,7 +4,7 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import Link from "next/link";
 import { useEffect, useMemo } from "react";
-import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents } from "react-leaflet";
+import { MapContainer, Marker, Polyline, Popup, TileLayer, useMap, useMapEvents } from "react-leaflet";
 
 export type MapPoint = {
   id: string;
@@ -28,6 +28,8 @@ export type LeafletMapProps = {
   onPick?: (point: { lat: number; lng: number }) => void;
   /** Show the visitor's own position marker. */
   youLabel?: string;
+  /** Draw a line from the visitor's position to every other point. */
+  connectToYou?: boolean;
 };
 
 function pinIcon(point: MapPoint): L.DivIcon {
@@ -80,8 +82,13 @@ export default function LeafletMap({
   fit = false,
   onPick,
   youLabel,
+  connectToYou = false,
 }: LeafletMapProps) {
   const position: [number, number] = [center.lat, center.lng];
+  const you = connectToYou ? points.find((point) => point.isYou) : undefined;
+  const routes = you
+    ? points.filter((point) => !point.isYou).map((point) => ({ id: point.id, to: [point.lat, point.lng] as [number, number] }))
+    : [];
 
   return (
     <div className={`relative overflow-hidden rounded-2xl border border-border ${className}`}>
@@ -99,6 +106,23 @@ export default function LeafletMap({
         />
         <FitBounds points={points} enabled={fit} />
         <ClickTarget onPick={onPick} />
+        {you &&
+          routes.map((route) => (
+            <Polyline
+              key={`route-${route.id}`}
+              positions={[
+                [you.lat, you.lng],
+                route.to,
+              ]}
+              pathOptions={{
+                color: "#C8A24A",
+                weight: 2,
+                opacity: 0.85,
+                dashArray: "6 8",
+                lineCap: "round",
+              }}
+            />
+          ))}
         {points.map((point) => (
           <Marker key={point.id} position={[point.lat, point.lng]} icon={pinIcon(point)}>
             <Popup>
